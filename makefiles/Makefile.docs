@@ -54,15 +54,14 @@ get-build-dependencies:
 	@curl https://raw.githubusercontent.com/mongodb/docs-worker-pool/meta/publishedbranches/docs.yaml > ${REPO_DIR}/published-branches.yaml
 
 next-gen-stage: ## Host online for review
-	if [ "$IS_REGRESSION_TESTS" = true ]; then \
-		PREFIX = "regressiontests/${MUT_PREFIX}" \
-	fi \
 	# stagel local jobs \
 	if [ -n "${PATCH_ID}" -a "${MUT_PREFIX}" = "${PROJECT}" ]; then \
 		mut-publish public ${STAGING_BUCKET} --prefix="${COMMIT_HASH}/${PATCH_ID}/${MUT_PREFIX}" --stage ${ARGS}; \
 		echo "Hosted at ${STAGING_URL}/${COMMIT_HASH}/${PATCH_ID}/${MUT_PREFIX}/${USER}/${GIT_BRANCH}/"; \
 	# stagel commit jobs and regular git push jobs\
 	else \
+		if [ "$IS_REGRESSION_TESTS" = true ]; then \
+			PREFIX = "regressiontests/${MUT_PREFIX}" \
 		mut-publish public ${STAGING_BUCKET} --prefix="${PREFIX}" --stage ${ARGS}; \
 		echo "Hosted at ${STAGING_BUCKET}/${PREFIX}/${USER}/${GIT_BRANCH}/"; \
 		echo "regression test ${REGRESSION_TESTS}"; \
