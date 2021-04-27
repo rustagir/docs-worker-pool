@@ -24,7 +24,7 @@ COMMIT_HASH=$(shell git rev-parse --short HEAD)
 SNOOTY_DB_USR = $(shell printenv MONGO_ATLAS_USERNAME)
 SNOOTY_DB_PWD = $(shell printenv MONGO_ATLAS_PASSWORD)
 IS_REGRESSION_TESTS = $(shell printenv REGRESSION_TESTS)
-PREFIX = $MUT_PREFIX
+PREFIX = MUT_PREFIX
 include ~/shared.mk
 
 # "PROJECT" currently exists to support having multiple projects
