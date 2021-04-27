@@ -59,13 +59,13 @@ next-gen-stage: ## Host online for review
 		PREFIX = "${COMMIT_HASH}/${PATCH_ID}/${MUT_PREFIX}"; \
 		echo "LOCAL"; \
 	# stagel commit jobs and regular git push jobs\
-	elif [ "$IS_REGRESSION_TESTS" = true ]; then \
+	elif [ ${REGRESSION_TESTS} = true ]; then \
 		echo "GURUDEV"; \
 		PREFIX = "regressiontests/${MUT_PREFIX}"; \
 	else \
 		echo "GURUDEV Maheshwar"; \
 		PREFIX = MUT_PREFIX; \
-		echo "$IS_REGRESSION_TESTS"; \
+		echo ${REGRESSION_TESTS}; \
 	mut-publish public ${STAGING_BUCKET} --prefix="${PREFIX}" --stage ${ARGS}; \
 	echo "Hosted at ${STAGING_BUCKET}/${PREFIX}/${USER}/${GIT_BRANCH}/"; \
 	echo "regression test ${REGRESSION_TESTS}"; \
