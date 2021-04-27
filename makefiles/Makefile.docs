@@ -63,6 +63,7 @@ next-gen-stage: ## Host online for review
 	elif [ ${REGRESSION_TESTS} = true ]; then \
 		@echo "GURUDEV"; \
 		PATH_PREFIX="regressiontests/${MUT_PREFIX}"; \
+		@echo ${PATH_PREFIX}; \
 	else \
 		@echo "GURUDEV Maheshwar"; \
 		PATH_PREFIX=MUT_PREFIX; \
