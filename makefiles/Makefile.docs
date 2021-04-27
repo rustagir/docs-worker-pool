@@ -59,7 +59,7 @@ next-gen-stage: ## Host online for review
 		echo "LOCAL"; \
 		mut-publish public ${STAGING_BUCKET} --prefix="${COMMIT_HASH}/${PATCH_ID}/${MUT_PREFIX}" --stage ${ARGS}; \
 		echo "Hosted at ${STAGING_BUCKET}/${COMMIT_HASH}/${PATCH_ID}/${MUT_PREFIX}/"; \ 
-	# stagel commit jobs and regular git push jobs\
+	# Regression tests \
 	elif [ ${REGRESSION_TESTS} = true ]; then \
 		echo "GURUDEV"; \
 		mut-publish public ${STAGING_BUCKET} --prefix="regressiontests/${MUT_PREFIX}" --stage ${ARGS}; \
