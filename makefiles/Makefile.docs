@@ -53,9 +53,11 @@ get-build-dependencies:
 	@curl https://raw.githubusercontent.com/mongodb/docs-worker-pool/meta/publishedbranches/docs.yaml > ${REPO_DIR}/published-branches.yaml
 
 next-gen-stage: ## Host online for review
+	echo "next-gen-stage"; \
 	# stagel local jobs \
 	if [ -n "${PATCH_ID}" -a "${MUT_PREFIX}" = "${PROJECT}" ]; then \
 		PREFIX = "${COMMIT_HASH}/${PATCH_ID}/${MUT_PREFIX}"; \
+		echo "LOCAL"; \
 	# stagel commit jobs and regular git push jobs\
 	elif [ "$IS_REGRESSION_TESTS" = true ]; then \
 		echo "GURUDEV"; \
