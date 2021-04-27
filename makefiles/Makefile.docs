@@ -54,20 +54,21 @@ get-build-dependencies:
 
 next-gen-stage: ## Host online for review
 	echo "next-gen-stage"; \
+	PATH_PREFIX = ""; \
 	# stagel local jobs \
 	if [ -n "${PATCH_ID}" -a "${MUT_PREFIX}" = "${PROJECT}" ]; then \
-		PREFIX = "${COMMIT_HASH}/${PATCH_ID}/${MUT_PREFIX}"; \
 		echo "LOCAL"; \
+		PATH_PREFIX="${COMMIT_HASH}/${PATCH_ID}/${MUT_PREFIX}"; \
 	# stagel commit jobs and regular git push jobs\
 	elif [ ${REGRESSION_TESTS} = true ]; then \
 		echo "GURUDEV"; \
-		PREFIX = "regressiontests/${MUT_PREFIX}"; \
+		PATH_PREFIX="regressiontests/${MUT_PREFIX}"; \
 	else \
 		echo "GURUDEV Maheshwar"; \
-		PREFIX = MUT_PREFIX; \
+		PATH_PREFIX=MUT_PREFIX; \
 		echo ${REGRESSION_TESTS}; \
-	mut-publish public ${STAGING_BUCKET} --prefix="${PREFIX}" --stage ${ARGS}; \
-	echo "Hosted at ${STAGING_BUCKET}/${PREFIX}/${USER}/${GIT_BRANCH}/"; \
+	mut-publish public ${STAGING_BUCKET} --prefix="${PATH_PREFIX}" --stage ${ARGS}; \
+	echo "Hosted at ${STAGING_BUCKET}/${PATH_PREFIX}/${USER}/${GIT_BRANCH}/"; \
 	echo "regression test ${REGRESSION_TESTS}"; \
 	fi
 
