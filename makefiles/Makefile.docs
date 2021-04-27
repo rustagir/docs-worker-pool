@@ -61,7 +61,7 @@ next-gen-stage: ## Host online for review
 	# stagel commit jobs and regular git push jobs\
 	else \
 		if [ "$IS_REGRESSION_TESTS" = true ]; then \
-			PREFIX = "regressiontests/${MUT_PREFIX}" \
+			PREFIX = "regressiontests/${MUT_PREFIX}"; \
 		fi \
 		mut-publish public ${STAGING_BUCKET} --prefix="${PREFIX}" --stage ${ARGS}; \
 		echo "Hosted at ${STAGING_BUCKET}/${PREFIX}/${USER}/${GIT_BRANCH}/"; \
