@@ -53,24 +53,24 @@ get-build-dependencies:
 	@curl https://raw.githubusercontent.com/mongodb/docs-worker-pool/meta/publishedbranches/docs.yaml > ${REPO_DIR}/published-branches.yaml
 
 next-gen-stage: ## Host online for review
-	@echo "next-gen-stage"; \
+	echo "next-gen-stage"; \
 	PATH_PREFIX = ""; \
 	# stagel local jobs \
 	if [ -n "${PATCH_ID}" -a "${MUT_PREFIX}" = "${PROJECT}" ]; then \
-		@echo "LOCAL"; \
-		PATH_PREFIX="${COMMIT_HASH}/${PATCH_ID}/${MUT_PREFIX}"; \
+		echo "LOCAL"; \
+		$PATH_PREFIX="${COMMIT_HASH}/${PATCH_ID}/${MUT_PREFIX}"; \
 	# stagel commit jobs and regular git push jobs\
 	elif [ ${REGRESSION_TESTS} = true ]; then \
-		@echo "GURUDEV"; \
-		PATH_PREFIX="regressiontests/${MUT_PREFIX}"; \
-		@echo ${PATH_PREFIX}; \
+		echo "GURUDEV"; \
+		$PATH_PREFIX="regressiontests/${MUT_PREFIX}"; \
+		echo ${PATH_PREFIX}; \
 	else \
-		@echo "GURUDEV Maheshwar"; \
+		echo "GURUDEV Maheshwar"; \
 		PATH_PREFIX=MUT_PREFIX; \
-		@echo ${REGRESSION_TESTS}; \
+		echo ${REGRESSION_TESTS}; \
 	mut-publish public ${STAGING_BUCKET} --prefix="${PATH_PREFIX}" --stage ${ARGS}; \
-	@echo "Hosted at ${STAGING_BUCKET}/${PATH_PREFIX}/${USER}/${GIT_BRANCH}/"; \
-	@echo "regression test ${REGRESSION_TESTS}"; \
+	echo "Hosted at ${STAGING_BUCKET}/${PATH_PREFIX}/${USER}/${GIT_BRANCH}/"; \
+	echo "regression test ${REGRESSION_TESTS}"; \
 	fi
 
 lint: ## Checks URLs in the built corpus underneath build/<branch>/html
