@@ -53,19 +53,17 @@ get-build-dependencies:
 	@curl https://raw.githubusercontent.com/mongodb/docs-worker-pool/meta/publishedbranches/docs.yaml > ${REPO_DIR}/published-branches.yaml
 
 next-gen-stage: ## Host online for review
-	echo "next-gen-stage"; \
 	# stagel local jobs \
 	if [ -n "${PATCH_ID}" -a "${MUT_PREFIX}" = "${PROJECT}" ]; then \
 		mut-publish public ${STAGING_BUCKET} --prefix="${COMMIT_HASH}/${PATCH_ID}/${MUT_PREFIX}" --stage ${ARGS}; \
-		echo "Hosted at ${STAGING_BUCKET}/${COMMIT_HASH}/${PATCH_ID}/${MUT_PREFIX}/"; \
+		echo "Hosted at ${STAGING_URL}/${COMMIT_HASH}/${PATCH_ID}/${MUT_PREFIX}/"; \
 	# Regression tests \
 	elif [ ${REGRESSION_TESTS} = true ]; then \
-		echo "GURUDEV"; \
 		mut-publish public ${STAGING_BUCKET} --prefix="regressiontests/${MUT_PREFIX}" --stage ${ARGS}; \
+		echo "Hosted at ${STAGING_URL}/${MUT_PREFIX}/"; \
 	else \
-		echo "GURUDEV Maheshwar"; \
 		mut-publish public ${STAGING_BUCKET} --prefix="${MUT_PREFIX}" --stage ${ARGS}; \
-		echo "Hosted at ${STAGING_BUCKET}/${MUT_PREFIX}/"; \
+		echo "Hosted at ${STAGING_URL}/${MUT_PREFIX}/"; \
 	fi
 
 lint: ## Checks URLs in the built corpus underneath build/<branch>/html
