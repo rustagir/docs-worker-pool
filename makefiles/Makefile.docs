@@ -24,7 +24,6 @@ COMMIT_HASH=$(shell git rev-parse --short HEAD)
 SNOOTY_DB_USR = $(shell printenv MONGO_ATLAS_USERNAME)
 SNOOTY_DB_PWD = $(shell printenv MONGO_ATLAS_PASSWORD)
 IS_REGRESSION_TESTS = $(shell printenv REGRESSION_TESTS)
-PREFIX = MUT_PREFIX
 include ~/shared.mk
 
 # "PROJECT" currently exists to support having multiple projects
@@ -59,9 +58,12 @@ next-gen-stage: ## Host online for review
 		PREFIX = "${COMMIT_HASH}/${PATCH_ID}/${MUT_PREFIX}"; \
 	# stagel commit jobs and regular git push jobs\
 	elif [ "$IS_REGRESSION_TESTS" = true ]; then \
+		echo "GURUDEV"; \
 		PREFIX = "regressiontests/${MUT_PREFIX}"; \
 	else \
-		PREFIX = "${MUT_PREFIX}"; \
+		echo "GURUDEV Maheshwar"; \
+		PREFIX = MUT_PREFIX; \
+		echo IS_REGRESSION_TESTS; \
 	mut-publish public ${STAGING_BUCKET} --prefix="${PREFIX}" --stage ${ARGS}; \
 	echo "Hosted at ${STAGING_BUCKET}/${PREFIX}/${USER}/${GIT_BRANCH}/"; \
 	echo "regression test ${REGRESSION_TESTS}"; \
