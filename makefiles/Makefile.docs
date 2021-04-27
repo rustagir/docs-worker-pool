@@ -62,6 +62,7 @@ next-gen-stage: ## Host online for review
 	else \
 		if [ "$IS_REGRESSION_TESTS" = true ]; then \
 			PREFIX = "regressiontests/${MUT_PREFIX}" \
+		fi \
 		mut-publish public ${STAGING_BUCKET} --prefix="${PREFIX}" --stage ${ARGS}; \
 		echo "Hosted at ${STAGING_BUCKET}/${PREFIX}/${USER}/${GIT_BRANCH}/"; \
 		echo "regression test ${REGRESSION_TESTS}"; \
