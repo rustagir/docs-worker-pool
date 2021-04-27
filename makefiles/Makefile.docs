@@ -56,14 +56,12 @@ next-gen-stage: ## Host online for review
 	echo "next-gen-stage"; \
 	# stagel local jobs \
 	if [ -n "${PATCH_ID}" -a "${MUT_PREFIX}" = "${PROJECT}" ]; then \
-		echo "LOCAL"; \
 		mut-publish public ${STAGING_BUCKET} --prefix="${COMMIT_HASH}/${PATCH_ID}/${MUT_PREFIX}" --stage ${ARGS}; \
 		echo "Hosted at ${STAGING_BUCKET}/${COMMIT_HASH}/${PATCH_ID}/${MUT_PREFIX}/"; \
 	# Regression tests \
 	elif [ ${REGRESSION_TESTS} = true ]; then \
 		echo "GURUDEV"; \
 		mut-publish public ${STAGING_BUCKET} --prefix="regressiontests/${MUT_PREFIX}" --stage ${ARGS}; \
-		echo "Hosted at ${STAGING_BUCKET}/regressiontests/${MUT_PREFIX}/"; \
 	else \
 		echo "GURUDEV Maheshwar"; \
 		mut-publish public ${STAGING_BUCKET} --prefix="${MUT_PREFIX}" --stage ${ARGS}; \
