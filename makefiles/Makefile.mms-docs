@@ -61,7 +61,7 @@ html-opsmgr:
 
 ## Build Cloud Manager HTML files
 html-cloud:
-	giza make html-cloud
+	giza make html-cloud 
 
 ##########################################################
 ####       BUILD, STAGE AND DEPLOY NEXT-GEN SITE      ####
