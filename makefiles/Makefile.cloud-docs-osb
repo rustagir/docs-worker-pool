@@ -39,7 +39,11 @@ next-gen-html:
 	rsync -az --exclude '.git' "${REPO_DIR}/../../snooty" "${REPO_DIR}"
 	cp ${REPO_DIR}/.env.production ${REPO_DIR}/snooty;
 	cd snooty; \
-	echo "GATSBY_SITE=${PROJECT}" >> .env.production; \
+	if [ ${REGRESSION_TESTS} = true ]; then \
+		echo "GATSBY_SITE=regressiontests/${PROJECT}" >> .env.production; \
+	else \
+		echo "GATSBY_SITE=${PROJECT}" >> .env.production; \
+	fi
 	echo "COMMIT_HASH=${COMMIT_HASH}" >> .env.production; \
 	npm run build; \
 	cp -r "${REPO_DIR}/snooty/public" ${REPO_DIR};
