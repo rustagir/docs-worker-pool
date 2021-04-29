@@ -139,10 +139,14 @@ next-gen-html: examples
 			exit 0; \
 		fi \
 	fi
+	@if [ ${REGRESSION_TESTS} = true ]; then \
+		echo "GATSBY_SITE=regressiontests/${PROJECT}" >> .env.production; \
+	else \
+		echo "GATSBY_SITE=${PROJECT}" >> .env.production; \
+	fi
 	rsync -az --exclude '.git' "${REPO_DIR}/../../snooty" "${REPO_DIR}" 
 	cp ${REPO_DIR}/.env.production ${REPO_DIR}/snooty;
 	cd snooty; \
-	echo "GATSBY_SITE=${PROJECT}" >> .env.production; \
 	if [ -n "${PATCH_ID}" ]; then \
 		echo "COMMIT_HASH=${COMMIT_HASH}" >> .env.production && \
 		echo "PATCH_ID=${PATCH_ID}" >> .env.production; \
