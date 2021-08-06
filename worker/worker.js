@@ -216,14 +216,14 @@ module.exports = {
         workerUtils.removeDirectory(`repos/${currentJob.payload.repoName}`);
 
         // Must use timeout for testing purposes (essentially just re-calling work())
-        setTimeout(module.exports.work, MIN_TIMEOUT_MS);
+        // setTimeout(module.exports.work, MIN_TIMEOUT_MS);
       } else {
         // Log that no jobs were found
         console.log('No Jobs Found....: ', new Date());
         monitorInstance.reportStatus('No Jobs Found');
 
         // Wait retryMs milliseconds and then try work() again
-        setTimeout(module.exports.work, RETRY_TIMEOUT_MS);
+        // setTimeout(module.exports.work, RETRY_TIMEOUT_MS);
       }
     } catch (err) {
       console.log(`  Error caught by first catch: ${err}`);

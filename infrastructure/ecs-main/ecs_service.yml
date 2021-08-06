@@ -91,23 +91,23 @@ Resources:
               Service: ecs-tasks.amazonaws.com
             Action: 'sts:AssumeRole'
 
-  ECSService:
-    Type: 'AWS::ECS::Service'
-    Properties:
-      LaunchType: FARGATE
-      ServiceName: ${self:service}-${self:provider.stage}
-      Cluster: !Ref ECSCluster
-      TaskDefinition: !Ref TaskDefinition
-      DeploymentConfiguration:
-        MinimumHealthyPercent: ${self:custom.ecs.minimumHealthyPercent.${self:provider.stage}}
-        MaximumPercent: ${self:custom.ecs.maximumPercent.${self:provider.stage}}
-      DesiredCount: ${self:custom.ecs.desiredCount.${self:provider.stage}}
-      NetworkConfiguration:
-        AwsvpcConfiguration:
-          AssignPublicIp: ENABLED
-          Subnets:
-            - subnet-8c3623f6
-            - subnet-a4ac73cf
-            - subnet-9e83fed2
-          SecurityGroups:
-            - !Ref SecurityGroupVPC
+  # ECSService:
+  #   Type: 'AWS::ECS::Service'
+  #   Properties:
+  #     LaunchType: FARGATE
+  #     ServiceName: ${self:service}-${self:provider.stage}
+  #     Cluster: !Ref ECSCluster
+  #     TaskDefinition: !Ref TaskDefinition
+  #     DeploymentConfiguration:
+  #       MinimumHealthyPercent: ${self:custom.ecs.minimumHealthyPercent.${self:provider.stage}}
+  #       MaximumPercent: ${self:custom.ecs.maximumPercent.${self:provider.stage}}
+  #     DesiredCount: ${self:custom.ecs.desiredCount.${self:provider.stage}}
+  #     NetworkConfiguration:
+  #       AwsvpcConfiguration:
+  #         AssignPublicIp: ENABLED
+  #         Subnets:
+  #           - subnet-8c3623f6
+  #           - subnet-a4ac73cf
+  #           - subnet-9e83fed2
+  #         SecurityGroups:
+  #           - !Ref SecurityGroupVPC
