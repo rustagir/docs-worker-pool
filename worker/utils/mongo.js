@@ -14,7 +14,7 @@ const COLL_NAME = EnvironmentClass.getCollection(); // Collection name in MongoD
 const META_NAME = 'meta';
 const MONITOR_NAME = 'monitor';
 const ENTITLEMENTS_NAME = 'entitlements';
-const BRANCHES_NAME = 'repos_branches';
+const BRANCHES_NAME = 'allison_repos_branches';
 
 // Hold onto the client
 let client;
