@@ -59,6 +59,8 @@ class GitHubJobClass {
         const branchInfo = getRepoBranches(this.currentJob.payload.repoName)
         const versioned = branchInfo["versioned"]
         const prefix = branchInfo["repo_branches"]["prefix"]
+        console.log("BRANCHINFO", branchInfo);
+        console.log("PREFIX ", prefix);
         const server_user = await workerUtils.getServerUser()
         
         let pathPrefix;
