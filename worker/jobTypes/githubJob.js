@@ -57,9 +57,10 @@ class GitHubJobClass {
         // check the repo's entry in the db to see if it is versioned
 
         const branchInfo = getRepoBranches(this.currentJob.payload.repoName)
+        console.log("BRANCHINFO", branchInfo);
         const versioned = branchInfo["versioned"]
         const prefix = branchInfo["repo_branches"]["prefix"]
-        console.log("BRANCHINFO", branchInfo);
+        
         console.log("PREFIX ", prefix);
         const server_user = await workerUtils.getServerUser()
         
