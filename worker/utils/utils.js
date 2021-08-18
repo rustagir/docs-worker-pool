@@ -213,6 +213,8 @@ module.exports = {
       let versioned = false
       const query = { "repoName": repoName };
       const repo_branches = await mongo.getBranchesCollection().find(query)
+      console.log("repo_branches object is: ");
+      console.log(repo_branches);
       if (repo_branches["branches"].length > 1) {
         versioned = true
       }
