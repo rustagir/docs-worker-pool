@@ -1,4 +1,4 @@
-prefix: 'drivers'
+prefix: 'docs-qa/drivers'
 version:
   published:
     - 'master'

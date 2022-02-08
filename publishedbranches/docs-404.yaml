@@ -1,4 +1,4 @@
-prefix: '404'
+prefix: 'docs-qa/404'
 version:
   published:
     - 'master'

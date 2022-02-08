@@ -1,4 +1,4 @@
-prefix: 'drivers/node'
+prefix: 'docs-qa/drivers/node'
 version:
   published:
     - 'Version 4.x (upcoming)'

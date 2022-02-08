@@ -1,4 +1,4 @@
-prefix: 'government'
+prefix: 'docs-qa/government'
 version:
   published:
     - 'master'

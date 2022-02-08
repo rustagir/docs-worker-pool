@@ -1,4 +1,4 @@
-prefix: 'realm'
+prefix: 'docs-qa/realm'
 version:
   published:
     - 'master'

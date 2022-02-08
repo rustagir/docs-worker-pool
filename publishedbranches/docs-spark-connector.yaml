@@ -1,4 +1,4 @@
-prefix: 'spark-connector'
+prefix: 'docs-qa/spark-connector'
 version:
   published:
     - '3.0'

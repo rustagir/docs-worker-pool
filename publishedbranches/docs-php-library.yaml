@@ -1,4 +1,4 @@
-prefix: 'php-library'
+prefix: 'docs-qa/php-library'
 version:
   published:
     - 'master'

@@ -1,4 +1,4 @@
-prefix: 'mongodb-vscode'
+prefix: 'docs-qa/mongodb-vscode'
 version:
   published:
     - 'master'

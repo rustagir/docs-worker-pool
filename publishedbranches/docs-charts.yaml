@@ -1,4 +1,4 @@
-prefix: 'charts'
+prefix: 'docs-qa/charts'
 version:
   published:
     - 'master'

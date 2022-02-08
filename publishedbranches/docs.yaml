@@ -1,4 +1,4 @@
-prefix: ''
+prefix: 'docs-qa/'
 version:
   published:
     - 'Upcoming Rapid Release (v5.3)'

@@ -1,4 +1,4 @@
-prefix: 'atlas-open-service-broker'
+prefix: 'docs-qa/atlas-open-service-broker'
 version:
   published:
     - 'master'

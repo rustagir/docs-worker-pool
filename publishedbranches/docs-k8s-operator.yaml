@@ -1,4 +1,4 @@
-prefix: 'kubernetes-operator'
+prefix: 'docs-qa/kubernetes-operator'
 version:
   published:
     - '1.8'

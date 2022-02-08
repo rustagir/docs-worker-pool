@@ -1,4 +1,4 @@
-prefix: 'mongodb-shell'
+prefix: 'docs-qa/mongodb-shell'
 version:
   published:
     - 'master'

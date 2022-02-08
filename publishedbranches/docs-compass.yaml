@@ -1,4 +1,4 @@
-prefix: 'compass'
+prefix: 'docs-qa/compass'
 version:
   published:
     - 'latest stable'
