@@ -1,4 +1,4 @@
-prefix: 'docs-qa/'
+prefix: 'docs/'
 version:
   published:
     - 'master'

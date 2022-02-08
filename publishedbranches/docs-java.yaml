@@ -1,4 +1,4 @@
-prefix: 'docs-qa/drivers/java/sync'
+prefix: 'docs/drivers/java/sync'
 version:
   published:
     - 'master (upcoming)'

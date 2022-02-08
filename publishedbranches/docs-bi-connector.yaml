@@ -1,4 +1,4 @@
-prefix: 'docs-qa/bi-connector'
+prefix: 'docs/bi-connector'
 version:
   published:
     - '2.14'

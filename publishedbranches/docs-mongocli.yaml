@@ -1,4 +1,4 @@
-prefix: 'docs-qa/mongocli'
+prefix: 'docs/mongocli'
 version:
   published:
     - '1.23 (upcoming)'

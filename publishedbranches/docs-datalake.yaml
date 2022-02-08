@@ -1,5 +1,5 @@
 
-prefix: 'docs-qa/datalake'
+prefix: 'docs/datalake'
 version:
   published:
     - 'master'

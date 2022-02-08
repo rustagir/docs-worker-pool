@@ -1,4 +1,4 @@
-prefix: 'docs-qa/kafka-connector'
+prefix: 'docs/kafka-connector'
 version:
   published:
     - 'master'

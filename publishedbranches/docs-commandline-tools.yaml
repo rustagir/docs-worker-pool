@@ -1,4 +1,4 @@
-prefix: 'docs-qa/database-tools'
+prefix: 'docs/database-tools'
 version:
   published:
     - 'master'

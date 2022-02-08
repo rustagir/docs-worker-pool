@@ -1,4 +1,4 @@
-prefix: 'docs-qa/drivers/go'
+prefix: 'docs/drivers/go'
 version:
   published:
     - 'master (upcoming)'

@@ -1,4 +1,4 @@
-prefix: 'docs-qa/mongodb-analyzer'
+prefix: 'docs/mongodb-analyzer'
 version:
   published:
     - 'master'
