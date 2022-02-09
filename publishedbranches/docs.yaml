@@ -1,4 +1,4 @@
-prefix: 'docs/'
+prefix: 'docs'
 version:
   published:
     - 'Upcoming Rapid Release (v5.3)'
