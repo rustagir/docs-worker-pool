@@ -1,4 +1,4 @@
-prefix: 'docs-qa/government'
+prefix: 'docs-qa/atlas/government'
 version:
   published:
     - 'master'
