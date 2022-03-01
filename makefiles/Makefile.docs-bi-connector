@@ -15,6 +15,13 @@ SNOOTY_DB_USR = $(shell printenv MONGO_ATLAS_USERNAME)
 SNOOTY_DB_PWD = $(shell printenv MONGO_ATLAS_PASSWORD)
 PUSHLESS_DEPLOY_SHARED_DISABLED=true
 
+# DOP-2649: If we're building in a dotcom environment, then we should use a different rstspec file
+ifneq (,$(findstring dotcom,$(SNOOTY_ENV)))
+	RSTSPEC_FLAG=--rstspec=https://raw.githubusercontent.com/mongodb/snooty-parser/latest/snooty/rstspec-consolidated.toml
+else
+	RSTSPEC_FLAG=
+endif
+
 # "PATCH_ID" related shell commands to manage commitless builds
 
 PATCH_ID=$(shell if test -f "${PATCH_FILE}"; then git patch-id < ${PATCH_FILE} | cut -b 1-7; fi)
@@ -26,21 +33,21 @@ include ~/shared.mk
 next-gen-html: get-build-dependencies
 	# snooty parse and then build-front-end
 	@if [ -n "${PATCH_ID}" ]; then \
-		echo ${SNOOTY_DB_PWD} | snooty build "${REPO_DIR}" "mongodb+srv://${SNOOTY_DB_USR}:@cluster0-ylwlz.mongodb.net/snooty?retryWrites=true" --commit "${COMMIT_HASH}" ${PATCH_CLAUSE}; \
+		echo ${SNOOTY_DB_PWD} | snooty build "${REPO_DIR}" "mongodb+srv://${SNOOTY_DB_USR}:@cluster0-ylwlz.mongodb.net/snooty?retryWrites=true" --commit "${COMMIT_HASH}" ${PATCH_CLAUSE} ${RSTSPEC_FLAG}; \
 		if [ $$? -eq 1 ]; then \
 			exit 1; \
 		else \
 			exit 0; \
 		fi \
 	else \
-		echo ${SNOOTY_DB_PWD} | snooty build "${REPO_DIR}" "mongodb+srv://${SNOOTY_DB_USR}:@cluster0-ylwlz.mongodb.net/snooty?retryWrites=true"; \
+		echo ${SNOOTY_DB_PWD} | snooty build "${REPO_DIR}" "mongodb+srv://${SNOOTY_DB_USR}:@cluster0-ylwlz.mongodb.net/snooty?retryWrites=true" ${RSTSPEC_FLAG}; \
 		if [ $$? -eq 1 ]; then \
 			exit 1; \
 		else \
 			exit 0; \
 		fi \
 	fi
-	rsync -az --exclude '.git' "${REPO_DIR}/../../snooty" "${REPO_DIR}" 
+	rsync -az --exclude '.git' "${REPO_DIR}/../../snooty" "${REPO_DIR}"
 	cp ${REPO_DIR}/.env.production ${REPO_DIR}/snooty;
 	cd snooty; \
 	echo "GATSBY_SITE=${PROJECT}" >> .env.production; \
@@ -62,7 +69,7 @@ next-gen-stage: ## Host online for review
 		echo "Hosted at ${URL}/${MUT_PREFIX}/${USER}/${GIT_BRANCH}/"; \
 	fi
 
-get-build-dependencies: 
+get-build-dependencies:
 	@curl https://raw.githubusercontent.com/mongodb/docs-worker-pool/meta/publishedbranches/docs-bi-connector.yaml > ${REPO_DIR}/published-branches.yaml
 
 redirects:
