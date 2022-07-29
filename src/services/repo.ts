@@ -35,6 +35,7 @@ export class GitHubConnector implements IRepoConnector {
   private getBasePath(job: Job): string {
     const botName = this._config.get<string>('githubBotUserName');
     const botPw = this._config.get<string>('githubBotPW');
+    return `https://${botName}:${botPw}@github.com`;
     return job.payload.private ? `https://${botName}:${botPw}@github.com` : 'https://github.com';
   }
 
